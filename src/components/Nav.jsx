@@ -35,7 +35,7 @@ const Nav = () => {
 
   return (
     //fixed use it latter on nav
-    <div className="navbar bg-base-100 shadow-lg z-1">
+    <div className="navbar bg-base-100  fixed shadow-lg z-1">
       <div className="flex-1">
         <NavLink to="/" className="btn btn-ghost text-xl gap-0">
           dev<span className="bg-blend-color-burn text-rose-600">Challenges</span>{" "}
