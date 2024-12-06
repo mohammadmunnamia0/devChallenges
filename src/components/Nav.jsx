@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const Nav = () => {
 
@@ -20,30 +21,35 @@ const Nav = () => {
   //using use-effect to use it on the index.html and save it on local storage to the save the Theme value
 
   useEffect(() =>{
-    localStorage.setItem('Theme',Theme);
-    const localStorageTheme = localStorage.getItem('Theme');
-    document.querySelector('html').setAttribute('data-theme',localStorageTheme);
+  
+    // For saving the new state on local storage after clicking on the icon , if we use this after refresh it will remain unchanged
+
+    // localStorage.setItem('Theme',Theme);
+    // const localStorageTheme = localStorage.getItem('Theme');
+    // document.querySelector('html').setAttribute('data-theme',localStorageTheme);
+
+    document.querySelector('html').setAttribute('data-theme',Theme);
   },[Theme]);
 
   // ------------
 
   return (
-    <div className="navbar bg-base-100 shadow-lg fixed z-10">
+    <div className="navbar bg-base-100 shadow-lg fixed z-1">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl gap-0">
+        <NavLink to="/" className="btn btn-ghost text-xl gap-0">
           dev<span className="bg-blend-color-burn text-rose-600">Challenges</span>{" "}
-        </a>
+        </NavLink>
       </div>
       <div className="flex-none">
-        <ul className="menu menu-horizontal px-1">
+        <ul className="menu menu-horizontal px-1 gap-3">
           <li>
-            <a>Home</a>
+            <NavLink to="/" className={({isActive})=> isActive? 'text-primary font-bold':''}>  Home </NavLink>
           </li>
           <li>
-            <a>Bookmark</a>
+          <NavLink to="/blog" className={({isActive})=> isActive? 'text-primary font-bold':''}>  Blog </NavLink>
           </li>
           <li>
-            <a>Blog</a>
+          <NavLink to="/bookmarks" className={({isActive})=> isActive? 'text-primary font-bold':''}>  Bookmarks </NavLink>
           </li>
         </ul>
       </div>
