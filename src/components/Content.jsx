@@ -1,34 +1,29 @@
 import { useLoaderData } from "react-router-dom";
+import Markdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
+
+// need this only when a huge html file need to convert in to md file for using in js , in output check the content then u will understand it
+// import Markdown from 'react-markdown';
+// import rehypeRaw from 'rehype-raw';
+{/* <p>
+<Markdown rehypePlugins={[rehypeRaw]}>{blog.body_html}</Markdown> 
+</p> */}
 
 const Content = () => {
-
-    const blog = useLoaderData();
+  const blog = useLoaderData();
   return (
     <div>
-      <article className="max-w-2xl px-6 py-24 mx-auto space-y-16 dark:bg-gray-100 dark:text-gray-900">
-        <div className="w-full mx-auto space-y-4">
-          <h1 className="text-5xl font-bold leading-none">
-           {blog.title}
-          </h1>
-        
-          <p className="text-sm dark:text-gray-600">
-            by
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:underline dark:text-violet-600"
-            >
-              <span>Leroy Jenkins</span>
-            </a>
-            on
-            <time datetime="2021-02-12 15:34:18-0200">Feb 12th 2021</time>
+      <div className=" mx-auto group ">
+        <div className="p-6 space-y-2">
+          <h3 className="text-2xl font-semibold">{blog.title}</h3>
+          <span className="text-xs dark:text-gray-600">
+            {new Date(blog.published_at).toLocaleDateString()}
+          </span>
+          <p>
+          <Markdown rehypePlugins={[rehypeRaw]}>{blog.body_html}</Markdown>
           </p>
         </div>
-        <div className="dark:text-gray-800">
-          <p>Insert the actual text content here...</p>
-        </div>
-      </article>
+      </div>
     </div>
   );
 };
