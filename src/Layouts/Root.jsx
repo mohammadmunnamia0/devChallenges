@@ -5,10 +5,12 @@ import Foot from "../components/foot";
 const Root = () => {
   return (
     <div>
-      <div className="h-20">
+      <div className="h-16">
         <Nav></Nav>
       </div>
-      <Outlet></Outlet>
+      <div className='min-h-[calc(100vh-120px)]'>
+        <Outlet></Outlet>
+      </div>
       <Foot></Foot>
     </div>
   );
