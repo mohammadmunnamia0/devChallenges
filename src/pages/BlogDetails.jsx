@@ -1,22 +1,26 @@
 import { useState } from "react";
 import { Link, Outlet, useLoaderData } from "react-router-dom";
 import { MdBookmarkAdd } from "react-icons/md";
-
+import { saveBlog } from "../Utlity/LocalStorage";
 
 const BlogDetails = () => {
   const blogDetails = useLoaderData();
-  const [tabIndex,setTabIndex] = useState(0);
-
+  const [tabIndex, setTabIndex] = useState(0);
 
   const {
     cover_image,
     published_at,
     reading_time_minutes,
     public_reactions_count,
-	tags,
+    tags,
   } = blogDetails;
 
- 
+  //Bookmark handleBookMark
+
+  const handleBookMark = (blogDetails) => {
+    // console.log(blogDetails);
+    saveBlog(blogDetails);
+  };
 
   return (
     <div>
@@ -33,22 +37,20 @@ const BlogDetails = () => {
                 className="w-full h-60 sm:h-96 dark:bg-gray-500"
               />
             </div>
-			{/* dynamic tags names */}
-			<div>
-          <div className="flex flex-wrap py-6 gap-2 border-t border-dashed dark:border-gray-600">
-
-           {
-			tags.map(tag => (
-				<a 
-				key={tag}
-				className="px-3 py-1 rounded-sm hover:underline dark:bg-violet-600
-				 dark:text-gray-50">
-				#{tag}
-			  </a>
-			))
-		   }
-          </div>
-        </div>
+            {/* dynamic tags names */}
+            <div>
+              <div className="flex flex-wrap py-6 gap-2 border-t border-dashed dark:border-gray-600">
+                {tags.map((tag) => (
+                  <a
+                    key={tag}
+                    className="px-3 py-1 rounded-sm hover:underline dark:bg-violet-600
+				 dark:text-gray-50"
+                  >
+                    #{tag}
+                  </a>
+                ))}
+              </div>
+            </div>
             <div className="flex flex-col items-start justify-between w-full md:flex-row md:items-center dark:text-gray-600">
               <div className="flex items-center md:space-x-2">
                 <p className="text-sm">
@@ -61,12 +63,13 @@ const BlogDetails = () => {
             </div>
           </div>
           <div className="flex items-center -mx-4 overflow-x-auto overflow-y-hidden sm:justify-start flex-nowrap dark:bg-gray-100 dark:text-gray-800">
-
-            <Link to=""
-
-			onClick={()=>setTabIndex(1)}
-
-			className={`flex items-center  flex-shrink-0 px-5 py-3 space-x-2 ${tabIndex===0 ? 'border border-b-0' : 'border-b'} rounded-t-lg dark:border-gray-600 dark:text-gray-900`}>
+            <Link
+              to=""
+              onClick={() => setTabIndex(1)}
+              className={`flex items-center  flex-shrink-0 px-5 py-3 space-x-2 ${
+                tabIndex === 0 ? "border border-b-0" : "border-b"
+              } rounded-t-lg dark:border-gray-600 dark:text-gray-900`}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -81,11 +84,13 @@ const BlogDetails = () => {
               </svg>
               <span>Content</span>
             </Link>
-            <Link 
-			to={'author'}
-			onClick={()=>setTabIndex(0)}
-
-			className={`flex items-center  flex-shrink-0 px-5 py-3 space-x-2 ${tabIndex===1 ? 'border border-b-0' : 'border-b'} rounded-t-lg dark:border-gray-600 dark:text-gray-900`}>
+            <Link
+              to={"author"}
+              onClick={() => setTabIndex(0)}
+              className={`flex items-center  flex-shrink-0 px-5 py-3 space-x-2 ${
+                tabIndex === 1 ? "border border-b-0" : "border-b"
+              } rounded-t-lg dark:border-gray-600 dark:text-gray-900`}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -102,18 +107,21 @@ const BlogDetails = () => {
               <span>Author</span>
             </Link>
 
-			  {/* BooksMark Button */}
-			  <div className="text-2xl cursor-pointer p-2 rounded-full bg-slate-300 hover:bg-lime-200 hover:scale-105">
-			  <MdBookmarkAdd />
-			  </div>
+            {/* BooksMark Button */}
+            <div>
+              <div
+                onClick={() => handleBookMark(blogDetails)}
+                className="text-2xl cursor-pointer p-2 rounded-full bg-slate-300 hover:bg-lime-200 hover:scale-105"
+              >
+                <MdBookmarkAdd />
+              </div>
+            </div>
           </div>
-		  <Outlet></Outlet>
+
+          <Outlet></Outlet>
         </article>
 
-
-		 
-
-	{/* dynamic tags names
+        {/* dynamic tags names
         <div>
           <div className="flex flex-wrap py-6 gap-2 border-t border-dashed dark:border-gray-600">
 
