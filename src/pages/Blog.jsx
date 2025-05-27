@@ -1,5 +1,5 @@
 import { useLoaderData, useNavigation } from "react-router-dom";
-import BlogCard from "../components/blogCard";
+import BlogCard from "../components/BlogCard";
 import LoadingSpinner from "../components/LoadingSpinner";
 
 const Blog = () => {
@@ -34,7 +34,7 @@ const Blog = () => {
             </div>
           </a>
           <div className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {blogsData.slice(1,19).map((blog) => (
+            {blogsData.slice(1, 19).map((blog) => (
               <BlogCard blog={blog} key={blog.id}></BlogCard>
             ))}
           </div>
