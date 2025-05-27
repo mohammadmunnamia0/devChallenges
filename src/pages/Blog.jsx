@@ -4,7 +4,6 @@ import LoadingSpinner from "../components/LoadingSpinner";
 
 const Blog = () => {
   const blogsData = useLoaderData();
-
   //loading spinner
   const navigator = useNavigation();
   //loading spinner
@@ -44,5 +43,4 @@ const Blog = () => {
     </div>
   );
 };
-
 export default Blog;
