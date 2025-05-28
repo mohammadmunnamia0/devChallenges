@@ -107,7 +107,7 @@ const Home = () => {
       <div className="hero min-h-[calc(100vh-120px)]">
         <div className="hero-content text-center">
           <div className="max-w-md">
-            <h1 className="font-extrabold text-6xl">
+            <h1 className="font-extrabold text-5xl lg:text-6xl">
               Welcome To <span className="text-red-600">devChallenges</span>
             </h1>
             <p className="py-6">

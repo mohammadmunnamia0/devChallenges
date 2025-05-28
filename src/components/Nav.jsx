@@ -140,7 +140,7 @@ const Nav = () => {
           </div>
 
           {/* Theme Toggle */}
-          <div className="flex-none mr-8 lg:mr-0 lg:ml-6">
+          <div className="flex-none lg:mr-0 lg:ml-6">
             <label className="swap swap-rotate group">
               <input
                 onChange={handleTheme}
