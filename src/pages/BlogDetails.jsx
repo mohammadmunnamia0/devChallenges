@@ -7,6 +7,13 @@ const BlogDetails = () => {
   const blogDetails = useLoaderData();
   const [tabIndex, setTabIndex] = useState(0);
 
+  // Add error handling
+  if (!blogDetails) {
+    return <div className="text-center py-20">Loading blog details...</div>;
+  }
+
+  console.log("Blog Details:", blogDetails); // Debug log
+
   const {
     cover_image,
     published_at,

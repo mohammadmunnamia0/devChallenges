@@ -28,17 +28,35 @@ export const router = createBrowserRouter([
         {
           path:'/blog/:id',
           element:<BlogDetails></BlogDetails>,
-          loader: ({params}) => fetch(`https://dev.to/api/articles/${params.id}`),
+          loader: async ({params}) => {
+            const response = await fetch(`https://dev.to/api/articles/${params.id}`);
+            if (!response.ok) {
+              throw new Error('Failed to load blog details');
+            }
+            return response.json();
+          },
           children:[
             {
                 index:true,
                 element : <Content></Content>,
-                loader: ({params}) => fetch(`https://dev.to/api/articles/${params.id}`),
+                loader: async ({params}) => {
+                  const response = await fetch(`https://dev.to/api/articles/${params.id}`);
+                  if (!response.ok) {
+                    throw new Error('Failed to load blog content');
+                  }
+                  return response.json();
+                },
             },
             {
                 path:'author',
                 element :<Author></Author>,
-                loader: ({params}) => fetch(`https://dev.to/api/articles/${params.id}`),
+                loader: async ({params}) => {
+                  const response = await fetch(`https://dev.to/api/articles/${params.id}`);
+                  if (!response.ok) {
+                    throw new Error('Failed to load author details');
+                  }
+                  return response.json();
+                },
             }
           ]
         },
