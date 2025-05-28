@@ -104,7 +104,7 @@ const Home = () => {
   return (
     <div>
       {/* Hero Section */}
-      <div className="hero bg-base-200 min-h-[calc(100vh-120px)]">
+      <div className="hero min-h-[calc(100vh-120px)]">
         <div className="hero-content text-center">
           <div className="max-w-md">
             <h1 className="font-extrabold text-6xl">
